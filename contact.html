@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact Us - PrimeBetXPro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon: #00ff00;
+            --neon-glow: rgba(0, 255, 0, 0.3);
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --border-dim: #1a3a1a;
+            --text: #ffffff;
+            --text-muted: #9ca3af;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-dark);
+            border-bottom: 2px solid var(--border-dim);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--neon);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--neon-glow));
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 2px solid var(--neon);
+            color: var(--neon);
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--neon);
+            color: #000;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 120px 30px 60px;
+        }
+
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--neon);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 2px solid var(--neon);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 0 30px var(--neon-glow);
+        }
+
+        .contact-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            filter: drop-shadow(0 0 15px var(--neon-glow));
+        }
+
+        .contact-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            color: var(--neon);
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--neon);
+            color: #000;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .telegram-btn:hover {
+            background: transparent;
+            color: var(--neon);
+            box-shadow: 0 0 25px var(--neon-glow);
+            border: 2px solid var(--neon);
+        }
+
+        .telegram-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-dim);
+        }
+
+        .contact-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .info-item span {
+            color: var(--neon);
+            font-weight: 600;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 2px solid var(--border-dim);
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .inline-logo-sm {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 100px 20px 40px; }
+            .contact-card { padding: 35px 25px; }
+            .page-title { font-size: 28px; }
+            .telegram-btn { padding: 14px 30px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo">
+            <img src="attached_assets/IMG_7018_1764265330930.png" alt="PrimeBetXPro" class="logo-img">
+            PrimeBetXPro
+        </a>
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+</header>
+
+<div class="container">
+    <h1 class="page-title">Contact Us</h1>
+    
+    <div class="contact-card">
+        <img src="attached_assets/IMG_7018_1764265330930.png" alt="PrimeBetXPro" class="contact-icon">
+        <h2>Get in Touch</h2>
+        <p>Have questions about our services or need help with your subscription? Reach out to us on Telegram for quick support!</p>
+        
+        <a href="https://t.me/VarunPredictor" target="_blank" class="telegram-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/>
+            </svg>
+            @VarunPredictor
+        </a>
+
+        <div class="contact-info">
+            <h3>Support Hours</h3>
+            <div class="info-item">
+                <span>Response Time:</span> Within 24 Hours
+            </div>
+            <div class="info-item">
+                <span>Available:</span> 24/7 on Telegram
+            </div>
+            <div class="info-item">
+                <span>Languages:</span> English, Hindi
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p><img src="attached_assets/IMG_7018_1764265330930.png" alt="" class="inline-logo-sm"> &copy; 2024 PrimeBetXPro. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
