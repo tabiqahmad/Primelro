@@ -222,6 +222,19 @@
             margin-right: 4px;
         }
 
+        .key-display {
+            font-weight: 700;
+            color: var(--neon);
+            letter-spacing: 2px;
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+            cursor: pointer;
+        }
+
+        .key-display.revealed {
+            filter: blur(0);
+        }
+
         @media (max-width: 768px) {
             .platforms-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -256,7 +269,7 @@
         </div>
         
         <div class="key-info">
-            <p>Your Key: <span id="user-key">-</span> | Expires: <span id="key-expiry">-</span></p>
+            <p>Your Key: <span class="key-display" id="user-key" onclick="toggleKeyVisibility()">-</span> | Expires: <span id="key-expiry">-</span></p>
         </div>
 
         <div class="platforms-grid" id="platforms-container"></div>
@@ -324,6 +337,11 @@ function renderPlatforms() {
             </div>
         </a>
     `).join('');
+}
+
+function toggleKeyVisibility() {
+    const keyEl = document.getElementById('user-key');
+    keyEl.classList.toggle('revealed');
 }
 
 function init() {
