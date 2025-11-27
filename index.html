@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PrimeBetXPro - Premium Game Predictions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon: #00ff00;
+            --neon-dark: #00cc00;
+            --neon-glow: rgba(0, 255, 0, 0.3);
+            --purple: #a855f7;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a24;
+            --border-color: #00ff00;
+            --border-dim: #1a3a1a;
+            --text: #ffffff;
+            --text-muted: #9ca3af;
+            --success: #00ff00;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-dark);
+            border-bottom: 2px solid var(--border-dim);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--neon);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 10px var(--neon-glow);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--neon-glow));
+        }
+
+        .inline-logo {
+            width: 36px;
+            height: 36px;
+            vertical-align: middle;
+            margin-right: 8px;
+            filter: drop-shadow(0 0 6px var(--neon-glow));
+        }
+
+        .inline-logo-sm {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+            margin-right: 4px;
+            filter: drop-shadow(0 0 4px var(--neon-glow));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--neon);
+            color: var(--neon) !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--neon);
+            color: #000 !important;
+            box-shadow: 0 0 20px var(--neon-glow);
+        }
+
+        .logout-btn {
+            border-color: var(--error) !important;
+            color: var(--error) !important;
+        }
+
+        .logout-btn:hover {
+            background: var(--error) !important;
+            color: #fff !important;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.4) !important;
+        }
+
+        main {
+            padding-top: 80px;
+        }
+
+        .login-section {
+            padding: 60px 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .login-card {
+            background: var(--bg-card);
+            border: 2px solid var(--neon);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px var(--neon-glow);
+        }
+
+        .login-card h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .login-card > p {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 16px 18px;
+            background: transparent;
+            border: 2px solid var(--border-dim);
+            border-radius: 25px;
+            font-size: 15px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text);
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--neon);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 2px solid var(--neon);
+            color: var(--neon);
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--neon);
+            color: #000;
+            box-shadow: 0 0 30px var(--neon-glow);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.15);
+            border: 2px solid var(--error);
+            color: #fca5a5;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .hint {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .hint a {
+            color: var(--neon);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--neon);
+            color: var(--neon);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-title span {
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .pricing-section {
+            padding: 80px 30px;
+            background: var(--bg-card);
+            border-top: 2px solid var(--border-dim);
+        }
+
+        .pricing-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pricing-card {
+            background: var(--bg-dark);
+            border: 2px solid var(--border-dim);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--neon);
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px var(--neon-glow);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--neon);
+            box-shadow: 0 0 25px var(--neon-glow);
+        }
+
+        .pricing-card.popular::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: var(--neon);
+            color: #000;
+            padding: 5px 40px;
+            font-size: 10px;
+            font-weight: 800;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        .pricing-duration {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--neon);
+            margin-bottom: 20px;
+        }
+
+        .pricing-price {
+            margin-bottom: 25px;
+        }
+
+        .pricing-price .currency {
+            font-size: 20px;
+            color: var(--text);
+            vertical-align: top;
+        }
+
+        .pricing-price .amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--neon);
+            text-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .pricing-original {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-decoration: line-through;
+            margin-bottom: 8px;
+        }
+
+        .pricing-discount {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.15);
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-dim);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--neon);
+            font-weight: bold;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 2px solid var(--neon);
+            color: var(--neon);
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .pricing-btn:hover {
+            background: var(--neon);
+            color: #000;
+            box-shadow: 0 0 25px var(--neon-glow);
+        }
+
+        .pricing-card.popular .pricing-btn {
+            background: var(--neon);
+            color: #000;
+        }
+
+        .pricing-card.popular .pricing-btn:hover {
+            background: transparent;
+            color: var(--neon);
+        }
+
+        .how-it-works {
+            padding: 80px 30px;
+            background: var(--bg-dark);
+        }
+
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .step-card {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: transparent;
+            border: 3px solid var(--neon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            color: var(--neon);
+            box-shadow: 0 0 20px var(--neon-glow);
+        }
+
+        .step-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--neon);
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            padding: 80px 30px;
+            background: var(--bg-card);
+            border-top: 2px solid var(--border-dim);
+        }
+
+        .cta-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: transparent;
+            border: 3px solid var(--neon);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 0 40px var(--neon-glow);
+        }
+
+        .cta-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .cta-card p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .cta-card .btn {
+            width: auto;
+            padding: 16px 40px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 2px solid var(--border-dim);
+            padding: 40px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-content p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .pricing-card.popular::before {
+                top: 12px;
+                right: -38px;
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .logo-img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .login-section {
+                padding: 40px 20px;
+            }
+
+            .login-card {
+                padding: 30px 25px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo">
+            <img src="https://i.ibb.co/Kpp4P6C7/IMG-7018.png" alt="PrimeBetXPro" class="logo-img">
+            PrimeBetXPro
+        </a>
+        <nav class="nav-links" id="nav-logged-out">
+            <a href="#pricing" class="nav-btn">Get Started</a>
+        </nav>
+        <nav class="nav-links hidden" id="nav-logged-in">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="#" onclick="logout()" class="nav-btn logout-btn">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="login-section">
+        <div class="login-card">
+            <h1><img src="https://i.ibb.co/Kpp4P6C7/IMG-7018.png" alt="" class="inline-logo"> Welcome to PrimeBetXPro</h1>
+            <p>Enter your access key to unlock premium predictions</p>
+            
+            <div class="error-message" id="error-msg"></div>
+
+            <form id="login-form" onsubmit="return handleLogin(event)">
+                <input class="input" type="text" id="key-input" placeholder="Enter Your Access Key" required autocomplete="off">
+                <button class="btn" type="submit">Unlock Premium Access</button>
+            </form>
+            
+            <p class="hint">Don't have a key? <a href="#pricing">View Plans</a></p>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+        <div class="section-header">
+            <span class="section-badge">Pricing</span>
+            <h2 class="section-title"><img src="https://i.ibb.co/Kpp4P6C7/IMG-7018.png" alt="" class="inline-logo"> Hack <span>Subscription</span></h2>
+            <p class="section-desc">Choose the perfect plan for your winning journey</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-duration">1 Week Access</div>
+                <div class="pricing-original">₹1,999</div>
+                <div class="pricing-price">
+                    <span class="currency">₹</span>
+                    <span class="amount">999</span>
+                </div>
+                <div class="pricing-discount">50% OFF</div>
+                <ul class="pricing-features">
+                    <li>7 Days Full Access</li>
+                    <li>All 14+ Platforms</li>
+                    <li>Unlimited Predictions</li>
+                    <li>24/7 Support</li>
+                </ul>
+                <a href="https://t.me/VarunPredictor" target="_blank" class="pricing-btn">Buy Now</a>
+            </div>
+            <div class="pricing-card popular">
+                <div class="pricing-duration">1 Month Access</div>
+                <div class="pricing-original">₹9,999</div>
+                <div class="pricing-price">
+                    <span class="currency">₹</span>
+                    <span class="amount">4,999</span>
+                </div>
+                <div class="pricing-discount">50% OFF</div>
+                <ul class="pricing-features">
+                    <li>30 Days Full Access</li>
+                    <li>All 14+ Platforms</li>
+                    <li>Unlimited Predictions</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="https://t.me/VarunPredictor" target="_blank" class="pricing-btn">Buy Now</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-duration">3 Month Access</div>
+                <div class="pricing-original">₹24,999</div>
+                <div class="pricing-price">
+                    <span class="currency">₹</span>
+                    <span class="amount">13,999</span>
+                </div>
+                <div class="pricing-discount">44% OFF</div>
+                <ul class="pricing-features">
+                    <li>90 Days Full Access</li>
+                    <li>All 14+ Platforms</li>
+                    <li>Unlimited Predictions</li>
+                    <li>VIP Support</li>
+                </ul>
+                <a href="https://t.me/VarunPredictor" target="_blank" class="pricing-btn">Buy Now</a>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; color: var(--text-muted); font-size: 15px;">
+            For Purchase Contact: <a href="https://t.me/VarunPredictor" target="_blank" style="color: var(--neon); font-weight: 700; text-decoration: none;">@VarunPredictor</a> on Telegram
+        </p>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <span class="section-badge">Process</span>
+            <h2 class="section-title">How It <span>Works</span></h2>
+            <p class="section-desc">Get started in minutes with our simple 4-step process</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Get Your Key</h3>
+                <p>Contact our team to receive your unique access key</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Login</h3>
+                <p>Enter your access key to unlock the dashboard</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Select Platform</h3>
+                <p>Choose from 14+ supported platforms</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Get Predictions</h3>
+                <p>Enter digits and receive instant predictions</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-card">
+            <h2>Ready to Start Winning?</h2>
+            <p>Join thousands of users who trust <img src="https://i.ibb.co/Kpp4P6C7/IMG-7018.png" alt="" class="inline-logo-sm"> PrimeBetXPro for accurate predictions</p>
+            <a href="https://t.me/VarunPredictor" target="_blank" class="btn">Get Your Access Key Now</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p><img src="https://i.ibb.co/Kpp4P6C7/IMG-7018.png" alt="" class="inline-logo-sm"> &copy; 2024 PrimeBetXPro. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+const VALID_KEYS = [
+    'PRIME001', 'PRIME002', 'PRIME003', 'PRIME004', 'PRIME005',
+    'PRIME006', 'PRIME007', 'PRIME008', 'PRIME009', 'PRIME010',
+    'PRIME011', 'PRIME012', 'PRIME013', 'PRIME014', 'PRIME015',
+    'PRIME016', 'PRIME017', 'PRIME018', 'PRIME019', 'PRIME020',
+    'PRIME021', 'PRIME022', 'PRIME023', 'PRIME024', 'PRIME025',
+    'PRIME026', 'PRIME027', 'PRIME028', 'PRIME029', 'PRIME030',
+    'PRIME031', 'PRIME032', 'PRIME033', 'PRIME034', 'PRIME035',
+    'PRIME036', 'PRIME037', 'PRIME038', 'PRIME039', 'PRIME040',
+    'PRIME041', 'PRIME042', 'PRIME043', 'PRIME044', 'PRIME045',
+    'PRIME046', 'PRIME047', 'PRIME048', 'PRIME049', 'PRIME050'
+];
+
+const KEY_VALIDITY_DAYS = 7;
+
+function generateDeviceID() {
+    let deviceID = localStorage.getItem('deviceID');
+    if (!deviceID) {
+        const components = [
+            navigator.userAgent,
+            navigator.language,
+            new Date().getTimezoneOffset(),
+            screen.width + 'x' + screen.height,
+            Math.random().toString(36).substring(2, 15)
+        ];
+        deviceID = btoa(components.join('|')).substring(0, 32);
+        localStorage.setItem('deviceID', deviceID);
+    }
+    return deviceID;
+}
+
+function getUsedKeys() {
+    const data = localStorage.getItem('usedKeys');
+    return data ? JSON.parse(data) : {};
+}
+
+function saveUsedKeys(keys) {
+    localStorage.setItem('usedKeys', JSON.stringify(keys));
+}
+
+function isKeyValid(key) {
+    const usedKeys = getUsedKeys();
+    if (usedKeys[key]) {
+        const keyData = usedKeys[key];
+        const activationDate = new Date(keyData.activationDate || keyData);
+        const expiryDate = new Date(activationDate);
+        expiryDate.setDate(expiryDate.getDate() + KEY_VALIDITY_DAYS);
+        return new Date() < expiryDate;
+    }
+    return VALID_KEYS.includes(key.toUpperCase());
+}
+
+function isKeyUsedByOther(key) {
+    const usedKeys = getUsedKeys();
+    const currentUser = sessionStorage.getItem('currentKey');
+    return usedKeys[key] && currentUser !== key;
+}
+
+function activateKey(key) {
+    const usedKeys = getUsedKeys();
+    if (!usedKeys[key]) {
+        usedKeys[key] = {
+            activationDate: new Date().toISOString(),
+            deviceID: generateDeviceID()
+        };
+        saveUsedKeys(usedKeys);
+    }
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const keyInput = document.getElementById('key-input');
+    const errorMsg = document.getElementById('error-msg');
+    const key = keyInput.value.trim().toUpperCase();
+
+    if (!VALID_KEYS.includes(key)) {
+        errorMsg.textContent = 'Invalid Key - Please check and try again';
+        errorMsg.style.display = 'block';
+        return false;
+    }
+
+    const usedKeys = getUsedKeys();
+    const currentDeviceID = generateDeviceID();
+    
+    if (usedKeys[key]) {
+        const keyData = usedKeys[key];
+        const activationDate = new Date(keyData.activationDate || keyData);
+        const expiryDate = new Date(activationDate);
+        expiryDate.setDate(expiryDate.getDate() + KEY_VALIDITY_DAYS);
+        
+        if (new Date() > expiryDate) {
+            errorMsg.textContent = 'This key has expired. Please contact support.';
+            errorMsg.style.display = 'block';
+            return false;
+        }
+        
+        if (keyData.deviceID && keyData.deviceID !== currentDeviceID) {
+            errorMsg.textContent = 'This key is already in use on another device. Each key works on one device only.';
+            errorMsg.style.display = 'block';
+            return false;
+        }
+    }
+
+    activateKey(key);
+    sessionStorage.setItem('loggedIn', 'true');
+    sessionStorage.setItem('currentKey', key);
+    window.location.href = 'dashboard.html';
+    return false;
+}
+
+function logout() {
+    sessionStorage.removeItem('loggedIn');
+    sessionStorage.removeItem('currentKey');
+    window.location.href = 'index.html';
+}
+
+function checkLoginStatus() {
+    const loggedIn = sessionStorage.getItem('loggedIn');
+    const navLoggedOut = document.getElementById('nav-logged-out');
+    const navLoggedIn = document.getElementById('nav-logged-in');
+    
+    if (loggedIn === 'true') {
+        navLoggedOut.classList.add('hidden');
+        navLoggedIn.classList.remove('hidden');
+    } else {
+        navLoggedOut.classList.remove('hidden');
+        navLoggedIn.classList.add('hidden');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', checkLoginStatus);
+</script>
+
+</body>
+</html>

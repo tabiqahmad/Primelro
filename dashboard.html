@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard - PrimeBetXPro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon: #00ff00;
+            --neon-glow: rgba(0, 255, 0, 0.3);
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --border-dim: #1a3a1a;
+            --text: #ffffff;
+            --text-muted: #9ca3af;
+            --success: #00ff00;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-dark);
+            border-bottom: 2px solid var(--border-dim);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--neon);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            text-shadow: 0 0 10px var(--neon-glow);
+            white-space: nowrap;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--neon-glow));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--error);
+            color: var(--error) !important;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: var(--error);
+            color: #fff !important;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        main {
+            padding-top: 80px;
+        }
+
+        .dashboard-section {
+            padding: 40px 30px 80px;
+        }
+
+        .dashboard-header {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .dashboard-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .dashboard-subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .key-info {
+            max-width: 400px;
+            margin: 0 auto 30px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-dim);
+            border-radius: 15px;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .key-info span {
+            color: var(--neon);
+            font-weight: 700;
+        }
+
+        .platforms-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-dim);
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            border-color: var(--neon);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px var(--neon-glow);
+        }
+
+        .platform-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--border-dim);
+        }
+
+        .platform-card:hover img {
+            border-color: var(--neon);
+        }
+
+        .platform-info {
+            padding: 16px;
+            text-align: center;
+        }
+
+        .platform-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .platform-info span {
+            font-size: 12px;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 2px solid var(--border-dim);
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .inline-logo-sm {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .dashboard-section {
+                padding: 30px 20px 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo">
+            <img src="https://i.ibb.co/Kpp4P6C7/IMG-7018.png" alt="PrimeBetXPro" class="logo-img">
+            PrimeBetXPro
+        </a>
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="#" onclick="logout()" class="nav-btn">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="dashboard-section">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Select Your Platform</h1>
+            <p class="dashboard-subtitle">Choose a game to get started with predictions</p>
+        </div>
+        
+        <div class="key-info">
+            <p>Your Key: <span id="user-key">-</span> | Expires: <span id="key-expiry">-</span></p>
+        </div>
+
+        <div class="platforms-grid" id="platforms-container"></div>
+    </section>
+</main>
+
+<footer>
+    <p><img src="https://i.ibb.co/Kpp4P6C7/IMG-7018.png" alt="" class="inline-logo-sm"> &copy; 2024 PrimeBetXPro. All rights reserved.</p>
+</footer>
+
+<script>
+const platforms = [
+    {id: 'jalwa', name: 'Jalwa Game', logo: 'https://i.ibb.co/chH3hvZk/IMG-5994.jpg'},
+    {id: 'tashan', name: 'Tashan Win', logo: 'https://i.ibb.co/tMSbY9Sy/IMG-6570.jpg'},
+    {id: 'bharat', name: 'Bharat Club', logo: 'https://i.ibb.co/TBYGkxQP/IMG-7001.jpg'},
+    {id: '91club', name: '91 Club', logo: 'https://i.ibb.co/VYF5qvvC/IMG-7002.png'},
+    {id: '55club', name: '55 Club', logo: 'https://i.ibb.co/W4p91sZc/IMG-7003.jpg'},
+    {id: 'goa', name: 'Goa Games', logo: 'https://i.ibb.co/ccL8RwFS/IMG-7004.jpg'},
+    {id: 'okwin', name: 'Okwin', logo: 'https://i.ibb.co/0j9DkY2k/IMG-7005.jpg'},
+    {id: 'kwg', name: 'Kwg Games', logo: 'https://i.ibb.co/ZRKVbk31/IMG-7006.jpg'},
+    {id: 'diuwin', name: 'Diuwin', logo: 'https://i.ibb.co/HDjG1yJG/IMG-7007.png'},
+    {id: 'tc', name: 'Tc Lottery', logo: 'https://i.ibb.co/rRpmk0XG/IMG-7008.png'},
+    {id: '82lot', name: '82 Lottery', logo: 'https://i.ibb.co/rRpmk0XG/IMG-7008.png'},
+    {id: 'in999', name: 'In 999', logo: 'https://i.ibb.co/x9mJXQ3/IMG-7010.jpg'},
+    {id: 'bigmumbai', name: 'Big Mumbai', logo: 'https://i.ibb.co/d4snWfMb/IMG-7011.jpg'},
+    {id: 'sikkim', name: 'Sikkim Game', logo: 'https://i.ibb.co/d4snWfMb/IMG-7011.jpg'}
+];
+
+function checkAuth() {
+    const loggedIn = sessionStorage.getItem('loggedIn');
+    if (loggedIn !== 'true') {
+        window.location.href = 'index.html';
+        return false;
+    }
+    return true;
+}
+
+function logout() {
+    sessionStorage.removeItem('loggedIn');
+    sessionStorage.removeItem('currentKey');
+    window.location.href = 'index.html';
+}
+
+function getKeyExpiry() {
+    const key = sessionStorage.getItem('currentKey');
+    const usedKeys = JSON.parse(localStorage.getItem('usedKeys') || '{}');
+    if (usedKeys[key]) {
+        const keyData = usedKeys[key];
+        const activationDate = new Date(keyData.activationDate || keyData);
+        const expiryDate = new Date(activationDate);
+        expiryDate.setDate(expiryDate.getDate() + 7);
+        return expiryDate.toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'});
+    }
+    return '-';
+}
+
+function renderPlatforms() {
+    const container = document.getElementById('platforms-container');
+    container.innerHTML = platforms.map(p => `
+        <a href="prediction.html?id=${p.id}" class="platform-card">
+            <img src="${p.logo}" alt="${p.name}">
+            <div class="platform-info">
+                <h3>${p.name}</h3>
+                <span>Active</span>
+            </div>
+        </a>
+    `).join('');
+}
+
+function init() {
+    if (!checkAuth()) return;
+    
+    const key = sessionStorage.getItem('currentKey');
+    document.getElementById('user-key').textContent = key;
+    document.getElementById('key-expiry').textContent = getKeyExpiry();
+    
+    renderPlatforms();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
